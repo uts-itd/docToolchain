@@ -20,14 +20,14 @@ task exportMarkdown(
         group: 'docToolchain',
         type: Copy
 ) {
-    from srcDir
+    from fileTree(srcDir).files  //ensure the files don't copy the directory structure
 
     include("**/*.md") //include only markdown files
     includeEmptyDirs = false
     rename(/(.+).md/, '$1.adoc') //rename all files from *.md to *.adoc
     filter(Markdown2AdocFilter) // convert the content of the files
 
-    into targetDir
+    into srcDir //copy converted files back to source directory
 }
 
 class Markdown2AdocFilter extends FilterReader {

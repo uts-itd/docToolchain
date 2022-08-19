@@ -12,7 +12,9 @@ and this project tries to adhere to https://semver.org/spec/v2.0.0.html[Semantic
 === added
 
 === changed
-
+* Changed exportExcel.gradle to create an alternate tables directory for source reference
+* Changed exportMarkdown.gradle to discard the directory structure when copying files
+* Changed exportMarkdown.gradle to copy converted files back to the source directory for inclusion in the source template
 == 2.1.0 - 2022-08-15
 
 === fixes

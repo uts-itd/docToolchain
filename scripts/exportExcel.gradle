@@ -24,7 +24,7 @@ task exportExcel(
 
         def tree = fileTree(srcDir).include('**/*.xlsx').exclude('**/~*')
 
-        def exportFileDir = new File(sourceDir, 'excel')
+        def exportFileDir = new File(sourceDir, 'tables')    //changed to tables in the source diretory so that they can be referenced
 
         //make sure path for notes exists
         exportFileDir.deleteDir()
@@ -46,7 +46,7 @@ use `gradle exportExcel` to re-export files
     }
     doLast {
         File sourceDir = file(srcDir)
-        def exportFileDir = new File(sourceDir, 'excel')
+        def exportFileDir = new File(sourceDir, 'tables')  //changed to tables in the source diretory so that they can be referenced
         def tree = fileTree(srcDir).include('**/*.xlsx').exclude('**/~*')
 
         def nl = System.getProperty("line.separator")
