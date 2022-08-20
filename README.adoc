@@ -11,11 +11,11 @@ image:https://api.travis-ci.com/doctoolchain/doctoolchain.svg?branch=ng[link={ur
 
 [NOTE]
 ====
-Corona/Covid19 is taking its toll.
-Time is short in these times and issues are not worked on.
-That is why I (rdmueller) have just introduced `sponsored` issues with higher priority.
-The label should help to explain why some issues will be preferred over others.
-If you want to sponsor an issue, just use the sponsor link on top of this page.
+* This is a forked repository of https://github.com/docToolchain/docToolchain
+* We have forked it to customise some of the workflow and the scripts to fit UTS. 
+* It is a tool that can remain public to be added as sub modules or into a docker image for github actions. 
+* Do not store any connection connection strings or sensitive passwords in this repository.
+* A new branch of this repo will be created for any major functionality changes or remerging and testing changes from the original repository.
 ====
 
 [IMPORTANT]
