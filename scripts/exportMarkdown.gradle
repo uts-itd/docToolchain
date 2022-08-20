@@ -20,14 +20,36 @@ task exportMarkdown(
         group: 'docToolchain',
         type: Copy
 ) {
-    from fileTree(srcDir).files  //ensure the files don't copy the directory structure
+    doFirst {
+    }
+    doLast {
+        logger.info("docToolchain > exportMarkdown: " + docDir)
+        logger.info("docToolchain > exportMarkdown: " + mainConfigFile)
+        def configFile = new File(docDir, mainConfigFile)
+        def config = new ConfigSlurper().parse(configFile.text)
+        def exportPath = ""
+        def searchPath = ""
+        if (!config.exportMarkdown.exportPath.isEmpty()) {
+            exportPath = new File(docDir, config.exportMarkdown.exportPath).getAbsolutePath()
+        } else {
+            exportPath = new File(docDir, 'src/docs').getAbsolutePath()
+        }
+        if (!config.exportMarkdown.searchPath.isEmpty()) {
+            searchPath = new File(docDir, config.exportMarkdown.searchPath).getAbsolutePath()
+        } else {
+            searchPath = new File(docDir, 'src/docs').getAbsolutePath()
+        }
+        logger.info("docToolchain > exportMarkdown: exportPath: " + exportPath)
+        logger.info("docToolchain > exportMarkdown: searchPath: " + searchPath)
+        from fileTree(searchPath).files  //ensure the files don't copy the directory structure
 
-    include("**/*.md") //include only markdown files
-    includeEmptyDirs = false
-    rename(/(.+).md/, '$1.adoc') //rename all files from *.md to *.adoc
-    filter(Markdown2AdocFilter) // convert the content of the files
+        include("**/*.md") //include only markdown files
+        includeEmptyDirs = false
+        rename(/(.+).md/, '$1.adoc') //rename all files from *.md to *.adoc
+        filter(Markdown2AdocFilter) // convert the content of the files
 
-    into srcDir //copy converted files back to source directory
+        into exportPath //copy converted files back to source directory
+    }
 }
 
 class Markdown2AdocFilter extends FilterReader {

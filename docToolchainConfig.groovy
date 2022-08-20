@@ -263,6 +263,19 @@ exportEA.with {
 }
 //end::exportEAConfig[]
 
+//tag::exportMarkdownConfig[]
+// The following parameters can be used to change the default behaviour of 'exportMarkDown'.
+// All parameter are optionally.
+
+exportMarkdown.with {
+// OPTIONAL: relative path to base 'docDir' to which the diagrams and notes are to be exported
+// exportPath = "src/docs/"
+// OPTIONAL: relative path to base 'docDir', in which Enterprise Architect project files are searched
+// searchPath = "src/docs/"
+
+}
+//end::exportMarkdownConfig[]
+
 //tag::htmlSanityCheckConfig[]
 htmlSanityCheck.with {
     //sourceDir = "build/html5/site"
