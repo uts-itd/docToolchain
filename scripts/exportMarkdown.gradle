@@ -41,7 +41,7 @@ task exportMarkdown(
         }
         logger.info("docToolchain > exportMarkdown: exportPath: " + exportPath)
         logger.info("docToolchain > exportMarkdown: searchPath: " + searchPath)
-        from fileTree(searchPath).files  //ensure the files don't copy the directory structure
+        from fileTree(srcDir).files  //ensure the files don't copy the directory structure
 
         include("**/*.md") //include only markdown files
         includeEmptyDirs = false
