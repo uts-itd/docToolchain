@@ -32,16 +32,16 @@ task exportMarkdown(
         if (!config.exportMarkdown.exportPath.isEmpty()) {
             exportPath = new File(docDir, config.exportMarkdown.exportPath).getAbsolutePath()
         } else {
-            exportPath = targetDir
+            exportPath = new File(docDir, config.outputPath).getAbsolutePath()
         }
         if (!config.exportMarkdown.searchPath.isEmpty()) {
             searchPath = new File(docDir, config.exportMarkdown.searchPath).getAbsolutePath()
         } else {
-            searchPath = srcDir
+            searchPath = new File(docDir, config.inputPath).getAbsolutePath()
         }
         logger.info("docToolchain > exportMarkdown: exportPath: " + exportPath)
         logger.info("docToolchain > exportMarkdown: searchPath: " + searchPath)
-        from fileTree(srcDir).files  //ensure the files don't copy the directory structure
+        from fileTree(searchPath).files  //ensure the files don't copy the directory structure
 
         include("**/*.md") //include only markdown files
         includeEmptyDirs = false
