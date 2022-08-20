@@ -18,7 +18,7 @@ buildscript {
 task exportMarkdown(
         description: 'exports all markdown files to AsciiDoc',
         group: 'docToolchain',
-        type: Copy
+        //type: Copy
 ) {
     doFirst {
     }
@@ -41,14 +41,16 @@ task exportMarkdown(
         }
         logger.info("docToolchain > exportMarkdown: exportPath: " + exportPath)
         logger.info("docToolchain > exportMarkdown: searchPath: " + searchPath)
-        from fileTree(searchPath).files  //ensure the files don't copy the directory structure
+        copy {
+            from fileTree(searchPath).files  //ensure the files don't copy the directory structure
 
-        include("**/*.md") //include only markdown files
-        includeEmptyDirs = false
-        rename(/(.+).md/, '$1.adoc') //rename all files from *.md to *.adoc
-        filter(Markdown2AdocFilter) // convert the content of the files
+            include("**/*.md") //include only markdown files
+            includeEmptyDirs = false
+            rename(/(.+).md/, '$1.adoc') //rename all files from *.md to *.adoc
+            filter(Markdown2AdocFilter) // convert the content of the files
 
-        into exportPath //copy converted files back to source directory
+            into exportPath //copy converted files back to source directory
+        }
     }
 }
 
