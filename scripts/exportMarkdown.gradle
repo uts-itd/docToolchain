@@ -32,12 +32,12 @@ task exportMarkdown(
         if (!config.exportMarkdown.exportPath.isEmpty()) {
             exportPath = new File(docDir, config.exportMarkdown.exportPath).getAbsolutePath()
         } else {
-            exportPath = new File(docDir, 'src/docs').getAbsolutePath()
+            exportPath = targetDir
         }
         if (!config.exportMarkdown.searchPath.isEmpty()) {
             searchPath = new File(docDir, config.exportMarkdown.searchPath).getAbsolutePath()
         } else {
-            searchPath = new File(docDir, 'src/docs').getAbsolutePath()
+            searchPath = srcDir
         }
         logger.info("docToolchain > exportMarkdown: exportPath: " + exportPath)
         logger.info("docToolchain > exportMarkdown: searchPath: " + searchPath)
